@@ -15,11 +15,11 @@
 
 | Nr. | Testdatei | Beschreibung | Vorhanden |
 |---|---|---|:---:|
-| D1 | `test_1gb.bin` | 1 GB Zufallsdaten | [x] |
-| D2 | `test_5gb.bin` | 5 GB Zufallsdaten | [x] |
-| D3 | `manipuliert_mitte` | Verschlüsselte D1, ein Byte in der Dateimitte verändert | [x] |
-| D4 | `manipuliert_header` | Verschlüsselte D1, ein Byte im Header verändert | [x] |
-| D5 | `abgeschnitten` | Verschlüsselte D1, letzte 1000 Byte entfernt | [x] |
+| D1 | `test_1gb.bin` | 1 GB Zufallsdaten | ☑ |
+| D2 | `test_5gb.bin` | 5 GB Zufallsdaten | ☑ |
+| D3 | `manipuliert_mitte` | Verschlüsselte D1, ein Byte in der Dateimitte verändert | ☑ |
+| D4 | `manipuliert_header` | Verschlüsselte D1, ein Byte im Header verändert | ☑ |
+| D5 | `abgeschnitten` | Verschlüsselte D1, letzte 1000 Byte entfernt | ☑ |
 
 ---
 
@@ -180,11 +180,11 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 
 | Szenario | Fehler erkannt | Für Laien verständlich | Handlungsempfehlung | Ursache korrekt benannt | Wortlaut der Meldung |
 |---|:---:|:---:|:---:|:---:|---|
-| T3 falsches Passwort | [x] | [x] | [ ] | [x] | age: error: incorrect passphrase |
-| D3 Manipulation Mitte | [x] | [ ] | [ ] | ( [x] ) | age: error: failed to decrypt and authenticate payload chunk, file may be corrupted or tampered with |
-| D4 Manipulation Header | [x] | [ ] | [ ] | [x] | age: error: failed to read header: parsing age header: unexpected intro: "age-encryplion.org/v1\n" |
-| D5 abgeschnitten | [x] | [ ] | [ ] | ( [x] ) | age: error: failed to decrypt and authenticate payload chunk, file may be corrupted or tampered with |
-| Falscher privater Schlüssel | [x] | [ ] | [ ] | [x] | age: error: reading "key.txt": failed to read "key.txt": error at line 3: malformed secret key: invalid checksum |
+| T3 falsches Passwort | ☑ | ☑ | ☐ | ☑ | age: error: incorrect passphrase |
+| D3 Manipulation Mitte | ☑ | ☐ | ☐ | ( ☑ ) | age: error: failed to decrypt and authenticate payload chunk, file may be corrupted or tampered with |
+| D4 Manipulation Header | ☑ | ☐ | ☐ | ☑ | age: error: failed to read header: parsing age header: unexpected intro: "age-encryplion.org/v1\n" |
+| D5 abgeschnitten | ☑ | ☐ | ☐ | ( ☑ ) | age: error: failed to decrypt and authenticate payload chunk, file may be corrupted or tampered with |
+| Falscher privater Schlüssel | ☑ | ☐ | ☐ | ☑ | age: error: reading "key.txt": failed to read "key.txt": error at line 3: malformed secret key: invalid checksum |
 | **Anzahl erfüllt (max. 20)** | 5 | 1 | 0 | 4 | - |
 
 | Punkte | Bedingung |
@@ -201,12 +201,12 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| U4.1 | Schritte bis zum eigenen Schlüsselpaar | |
-| U4.2 | Schritte bis zur Weitergabe des öffentlichen Schlüssels | |
-| U4.3 | Schritte bis zum Import eines fremden Schlüssels | |
-| U4.4 | Wird ein Schlüssel als kopierbare Zeichenkette dargestellt? | ja / nein |
-| U4.5 | Welche Fachbegriffe muss man verstehen? | [ ] Zertifikat [ ] Fingerprint [ ] Beglaubigung [ ] Vertrauensstufe [ ] Keyserver [ ] Ablaufdatum [ ] Identität/Recipient |
-| U4.6 | Gibt es Warnungen oder Rückfragen, die ohne Vorwissen unverständlich sind? | |
+| U4.1 | Schritte bis zum eigenen Schlüsselpaar | 1 |
+| U4.2 | Schritte bis zur Weitergabe des öffentlichen Schlüssels | 2 |
+| U4.3 | Schritte bis zum Import eines fremden Schlüssels | - |
+| U4.4 | Wird ein Schlüssel als kopierbare Zeichenkette dargestellt? | ja |
+| U4.5 | Welche Fachbegriffe muss man verstehen? | ☐ Zertifikat ☐ Fingerprint ☐ Beglaubigung ☐ Vertrauensstufe ☐ Keyserver ☐ Ablaufdatum ☑ Identität/Recipient |
+| U4.6 | Gibt es Warnungen oder Rückfragen, die ohne Vorwissen unverständlich sind? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -216,19 +216,19 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | Vertrauensmodell oder Beglaubigungen müssen verstanden werden |
 | 0 | Ohne Vorwissen nicht bedienbar |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 3 **Begründung:** Schlüsselpaar nur als lokale Textdatei/ Konsolenausgabe
 
 ### U5 Schutz vor Fehlbedienung (Gewicht 6)
 
 | Nr. | Schutzmechanismus | Vorhanden |
 |---|---|:---:|
-| U5.1 | Passwort muss bestätigt werden | [ ] |
-| U5.2 | Anzeige der Passwortstärke | [ ] |
-| U5.3 | Warnung vor dem Überschreiben bestehender Dateien | [ ] |
-| U5.4 | Abbruch hinterlässt keine unvollständige Ausgabedatei | [ ] |
-| U5.5 | Hinweis, dass ein vergessenes Passwort nicht wiederherstellbar ist | [ ] |
-| U5.6 | Originaldatei wird nicht ohne Nachfrage gelöscht | [ ] |
-| **Anzahl erfüllt (max. 6)** | | |
+| U5.1 | Passwort muss bestätigt werden | ☑ |
+| U5.2 | Anzeige der Passwortstärke | ☐ |
+| U5.3 | Warnung vor dem Überschreiben bestehender Dateien | ☐ |
+| U5.4 | Abbruch hinterlässt keine unvollständige Ausgabedatei | ☐ |
+| U5.5 | Hinweis, dass ein vergessenes Passwort nicht wiederherstellbar ist | ☐ |
+| U5.6 | Originaldatei wird nicht ohne Nachfrage gelöscht | ☑ |
+| **Anzahl erfüllt (max. 6)** | 2 |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -238,7 +238,7 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | 1 bis 2 erfüllt |
 | 0 | Keiner erfüllt |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 2 **Begründung:** 2 Schutzmechanismen erfüllt.
 
 ---
 
@@ -248,9 +248,9 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| F1.1 | Passwortmodus vorhanden? | ja / nein |
-| F1.2 | Public-Key-Modus vorhanden? | ja / nein |
-| F1.3 | Sind beide über dieselbe Oberfläche erreichbar? | ja / nein |
+| F1.1 | Passwortmodus vorhanden? | ja |
+| F1.2 | Public-Key-Modus vorhanden? | ja |
+| F1.3 | Sind beide über dieselbe Oberfläche erreichbar? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -260,7 +260,7 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | Nur ein Modus, eingeschränkt |
 | 0 | Keiner nutzbar |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 4 **Begründung:** Beide Modi mit veschiedenen Parametern über CLI erreichbar.
 
 ### F2 Mehrere Empfänger (Gewicht 3)
 
@@ -326,11 +326,11 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 
 | System | Offiziell unterstützt |
 |---|:---:|
-| Windows | [ ] |
-| macOS | [ ] |
-| Linux | [ ] |
-| Android | [ ] |
-| iOS | [ ] |
+| Windows | ☐ |
+| macOS | ☐ |
+| Linux | ☐ |
+| Android | ☐ |
+| iOS | ☐ |
 
 | Punkte | Bedingung |
 |:---:|---|

@@ -70,10 +70,10 @@
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
 | S3.1 | Wird ein Post-Quanten-Verfahren angeboten? | ja / nein |
-| S3.2 | Welches Verfahren (z. B. ML-KEM-768, ML-KEM-1024)? | |
-| S3.3 | Wird es hybrid mit einem klassischen Verfahren kombiniert? | ja / nein |
-| S3.4 | Ist es standardmäßig aktiv? | ja / nein |
-| S3.5 | Ist es in der stabilen Version verfügbar (nicht Beta oder Plugin)? | ja / nein |
+| S3.2 | Welches Verfahren (z. B. ML-KEM-768, ML-KEM-1024)? | ML-KEM-1024-P384 |
+| S3.3 | Wird es hybrid mit einem klassischen Verfahren kombiniert? | ja |
+| S3.4 | Ist es standardmäßig aktiv? | nein |
+| S3.5 | Ist es in der stabilen Version verfügbar (nicht Beta oder Plugin)? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -83,7 +83,7 @@
 | 1 | Angekündigt, aber nicht verfügbar |
 | 0 | Nicht vorhanden |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 3 **Begründung:** Stabiles hybrides Verfahren verfügbar, muss manuell gewählt werden.
 
 ### S4 Sichere Defaults (Gewicht 6)
 

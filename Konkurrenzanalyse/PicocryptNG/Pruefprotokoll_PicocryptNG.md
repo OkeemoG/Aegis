@@ -474,3 +474,9 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | | | | |
 | 2 | | | | |
 | 3 | | | | |
+
+### Ergänzende Quellen & Eigene Prüfleistungen (age)
+
+| ID | Typ | Urheber / Projekt | Titel / Ressource | Stand / URL |
+|---|---|---|---|---|
+| | | | | |

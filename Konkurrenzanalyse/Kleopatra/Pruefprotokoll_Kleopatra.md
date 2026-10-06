@@ -474,3 +474,20 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | | | | |
 | 2 | | | | |
 | 3 | | | | |
+
+
+### Hinweis zur Verwendung von KI-Werkzeugen
+
+| Eingesetztes KI-Werkzeug | Zweck / Art der Nutzung |
+|---|---|
+| Claude Opus 5.5 | Erste Erstellung der Kriterien für die Nutzwertanalyse, Bereitstellung des Prüfprotokolls als Markdown Code |
+| Gemini 3.8 Flash | Unterstützung bei der Beantwortung einzelner Prüffragen und der Durchsuchung von Dokumentation |
+
+### Ergänzende Quellen & Eigene Prüfleistungen
+
+| ID | Typ | Urheber / Projekt | Titel / Ressource | Stand / URL |
+|---|---|---|---|---|
+| **[REPO-KLEO]** | GitHub-Repository | KDE Community | *KDE/kleopatra: Certificate manager and universal crypto GUI* | GitHub Repository<br>`https://github.com/KDE/kleopatra` |
+| **[WEB-GPG4WIN]** | Website (Dokumentation) | Gpg4win Initiative | *Gpg4win – Secure e-mail and file encryption for Windows* | Offizielle Website<br>`https://www.gpg4win.org/index.html` |
+| **[WEB-KDE-KLEO]** | Website (App-Übersicht) | KDE Community | *KDE Applications: Kleopatra* | KDE Software-Portal<br>`https://apps.kde.org/kleopatra/` |
+| **[EXP-TESTS]** | Eigene Erhebung | Eigene Arbeitsgruppe | *Empirische Funktions- und Sicherheitsanalyse (Protokollprüfungen)* | Eigene Prüfungen (2026) |

@@ -4,22 +4,22 @@
 
 | Feld | Eintrag |
 |---|---|
-| Tool | |
-| Version | |
-| Betriebssystem und Version | |
-| Hardware (CPU, RAM) | |
-| Datum | |
-| Prüfer | |
+| Tool | Picocrypt |
+| Version | 1.49 |
+| Betriebssystem und Version | Windows 11 Home 25H2 26200.9457 |
+| Hardware (CPU, RAM) | 13th Gen Intel(R) Core(TM) i7-13620H (2.40 GHz), 16,0 GB |
+| Datum | 6.10.2026 |
+| Prüfer | Micha Wiedemann |
 
 ## Vorbereitung
 
 | Nr. | Testdatei | Beschreibung | Vorhanden |
 |---|---|---|:---:|
-| D1 | `test_1gb.bin` | 1 GB Zufallsdaten | [ ] |
-| D2 | `test_5gb.bin` | 5 GB Zufallsdaten | [ ] |
-| D3 | `manipuliert_mitte` | Verschlüsselte D1, ein Byte in der Dateimitte verändert | [ ] |
-| D4 | `manipuliert_header` | Verschlüsselte D1, ein Byte im Header verändert | [ ] |
-| D5 | `abgeschnitten` | Verschlüsselte D1, letzte 1000 Byte entfernt | [ ] |
+| D1 | `test_1gb.bin` | 1 GB Zufallsdaten | [x] |
+| D2 | `test_5gb.bin` | 5 GB Zufallsdaten | [x] |
+| D3 | `manipuliert_mitte` | Verschlüsselte D1, ein Byte in der Dateimitte verändert | [x] |
+| D4 | `manipuliert_header` | Verschlüsselte D1, ein Byte im Header verändert | [x] |
+| D5 | `abgeschnitten` | Verschlüsselte D1, letzte 1000 Byte entfernt | [x] |
 
 ---
 
@@ -29,7 +29,7 @@
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| S1.1 | Welcher Verschlüsselungsalgorithmus wird verwendet? | |
+| S1.1 | Welcher Verschlüsselungsalgorithmus wird verwendet? | XChaCha20 |
 | S1.2 | Ist die Verschlüsselung authentifiziert (AEAD oder Encrypt-then-MAC)? | ja / nein |
 | S1.3 | Ist der Header authentifiziert? | ja / nein |
 | S1.4 | Sind Chunks gegen Vertauschen und Löschen geschützt? | ja / nein |

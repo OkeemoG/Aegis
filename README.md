@@ -62,3 +62,9 @@ User-friendly file encryption application with extensibility for end-to-end encr
 * **Implementierung:** Rust-Architektur, Concurrency-Modell in Iced, Memory-Safety-Garantien.
 * **Evaluation:** Benchmarks, Usability-Testergebnisse, Sicherheitsanalyse.
 * **Fazit & Ausblick:** Zusammenfassung und künftige Erweiterungen (z. B. Hardware-Tokens/YubiKey-Support).
+
+### Hinweis zur Verwendung von KI-Werkzeugen
+
+| Eingesetztes KI-Werkzeug | Zweck / Art der Nutzung |
+|---|---|
+| Claude Opus 5.5 | Erstellung des prototypischen Projektplans |

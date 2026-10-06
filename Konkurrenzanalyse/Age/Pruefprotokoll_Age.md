@@ -195,7 +195,7 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | 5 bis 9 erfüllt |
 | 0 | Weniger als 5 erfüllt |
 
-**Punkte:** 11 **Begründung:** 11 Punkte erfüllt.
+**Punkte:** 2 **Begründung:** 11 Punkte erfüllt.
 
 ### U4 Komplexität der Schlüsselverwaltung (Gewicht 8)
 
@@ -238,7 +238,7 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | 1 bis 2 erfüllt |
 | 0 | Keiner erfüllt |
 
-**Punkte:** 2 **Begründung:** 2 Schutzmechanismen erfüllt.
+**Punkte:** 1 **Begründung:** 2 Schutzmechanismen erfüllt.
 
 ---
 
@@ -266,9 +266,9 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| F2.1 | Kann eine Datei für mehrere Empfänger verschlüsselt werden? | ja / nein |
-| F2.2 | Getestete Anzahl Empfänger | |
-| F2.3 | Können Empfänger nachträglich hinzugefügt werden? | ja / nein |
+| F2.1 | Kann eine Datei für mehrere Empfänger verschlüsselt werden? | ja |
+| F2.2 | Getestete Anzahl Empfänger | -, Header wächst pro Empfänger um ~200B |
+| F2.3 | Können Empfänger nachträglich hinzugefügt werden? | nein, nur durch erneutes verschlüsseln |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -278,17 +278,17 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | Nur über Umwege (z. B. mehrfach verschlüsseln) |
 | 0 | Nicht möglich |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 3 **Begründung:** Nachträgliches Hinzufügen von Empfängern nur durch erneutes Verschlüsseln möglich.
 
 ### F3 Große Dateien und Streaming (Gewicht 4)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| F3.1 | Wurde D2 erfolgreich ver- und entschlüsselt? | ja / nein |
-| F3.2 | Maximaler RAM-Verbrauch beim Verschlüsseln | ___ MB |
-| F3.3 | Maximaler RAM-Verbrauch beim Entschlüsseln | ___ MB |
-| F3.4 | Gibt es eine Fortschrittsanzeige? | ja / nein |
-| F3.5 | Gibt es ein dokumentiertes Größenlimit? | |
+| F3.1 | Wurde D2 erfolgreich ver- und entschlüsselt? | ja |
+| F3.2 | Maximaler RAM-Verbrauch beim Verschlüsseln | 265,55 MB |
+| F3.3 | Maximaler RAM-Verbrauch beim Entschlüsseln | 558,25 MB |
+| F3.4 | Gibt es eine Fortschrittsanzeige? | nein |
+| F3.5 | Gibt es ein dokumentiertes Größenlimit? | - (1,18ZB) |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -298,15 +298,15 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | Größenlimit oder extrem langsam |
 | 0 | Fehlgeschlagen |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 2 **Begründung:** Praktisch kein Größenlimit, RAM unabhängig von Dateigröße zwischen 200MB und 600MB
 
 ### F4 Erweiterbarkeit (Gewicht 3)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| F4.1 | Gibt es eine Plugin-Schnittstelle? | ja / nein |
-| F4.2 | Werden Hardware-Token unterstützt (YubiKey, Smartcard, TPM)? | |
-| F4.3 | Gibt es eine Bibliothek oder API für Entwickler? | ja / nein |
+| F4.1 | Gibt es eine Plugin-Schnittstelle? | ja |
+| F4.2 | Werden Hardware-Token unterstützt? | Ja, über Plugins |
+| F4.3 | Gibt es eine Bibliothek oder API für Entwickler? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -316,7 +316,7 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | Eines der drei, eingeschränkt |
 | 0 | Keines |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 4 **Begründung:** Plugin-Schnittstelle, Unterstützung von Hardware-Token, Bibliothek und API für Entwickler.
 
 ---
 
@@ -326,9 +326,9 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 
 | System | Offiziell unterstützt |
 |---|:---:|
-| Windows | ☐ |
-| macOS | ☐ |
-| Linux | ☐ |
+| Windows | ☑ |
+| macOS | ☑ |
+| Linux | ☑ |
 | Android | ☐ |
 | iOS | ☐ |
 
@@ -340,17 +340,17 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | Ein System |
 | 0 | Nur inoffizielle Portierungen |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 3 **Begründung:** Mobile Systeme nur über nicht offiziell unterstützte Umwege
 
 ### P2 Installation und Portabilität (Gewicht 3)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| P2.1 | Größe des Downloads | ___ MB |
-| P2.2 | Sind Administratorrechte nötig? | ja / nein |
-| P2.3 | Gibt es eine portable Version ohne Installation? | ja / nein |
-| P2.4 | Dauer bis zur Einsatzbereitschaft | ___ min |
-| P2.5 | Müssen zusätzliche Abhängigkeiten installiert werden? | ja / nein |
+| P2.1 | Größe des Downloads | 19.777KB (Zip) |
+| P2.2 | Sind Administratorrechte nötig? | nein |
+| P2.3 | Gibt es eine portable Version ohne Installation? | ja |
+| P2.4 | Dauer bis zur Einsatzbereitschaft | 5min |
+| P2.5 | Müssen zusätzliche Abhängigkeiten installiert werden? | nein |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -360,15 +360,15 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | Zusätzliche Abhängigkeiten oder Paketmanager nötig |
 | 0 | Nur aus dem Quellcode installierbar |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 3 **Begründung:** Grundlegend portabel. Download der Binaries über Github für Laien umständlich. Installation über winget easy.
 
 ### P3 Interoperabilität (Gewicht 3)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| P3.1 | Gibt es weitere kompatible Implementierungen? Welche? | |
-| P3.2 | Test: Datei mit Tool A verschlüsselt, mit Tool B entschlüsselt | erfolgreich / nicht erfolgreich |
-| P3.3 | Ist das Format versioniert und abwärtskompatibel? | ja / nein |
+| P3.1 | Gibt es weitere kompatible Implementierungen? Welche? | rage, pyage, @noble/ciphers, age-encryption, Crypt::age, libage |
+| P3.2 | Test: Datei mit Tool A verschlüsselt, mit Tool B entschlüsselt | erfolgreich |
+| P3.3 | Ist das Format versioniert und abwärtskompatibel? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -378,7 +378,7 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | Format nur aus dem Quellcode ableitbar |
 | 0 | Proprietäres Format |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 4 **Begründung:** Vielseitige weitere Implementierungen, age-Format strickt versioniert und abwärtskompatibel und tool-unabhängig.
 
 ---
 
@@ -388,11 +388,11 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| W1.1 | Datum des letzten Releases | |
-| W1.2 | Anzahl Releases in den letzten 12 Monaten | |
-| W1.3 | Anzahl aktiver Maintainer | |
-| W1.4 | Ist das Repository archiviert? | ja / nein |
-| W1.5 | Reaktionszeit auf neue Issues (Stichprobe) | |
+| W1.1 | Datum des letzten Releases | 29.08.2026 |
+| W1.2 | Anzahl Releases in den letzten 12 Monaten | 3 |
+| W1.3 | Anzahl aktiver Maintainer | 1-2 |
+| W1.4 | Ist das Repository archiviert? | nein |
+| W1.5 | Reaktionszeit auf neue Issues (Stichprobe) | ~1 Monat|
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -402,15 +402,15 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | Letztes Release über 2 Jahre alt |
 | 0 | Archiviert oder eingestellt |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 4 **Begründung:** 3 Releases im letzten Jahr, 1-2 aktive Maintainer, schnelle Reaktionszeit
 
 ### W2 Lizenz (Gewicht 2)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| W2.1 | Lizenz | |
-| W2.2 | OSI-anerkannte Open-Source-Lizenz? | ja / nein |
-| W2.3 | Ist der vollständige Quellcode verfügbar? | ja / nein |
+| W2.1 | Lizenz | BSD-3-Clause license |
+| W2.2 | OSI-anerkannte Open-Source-Lizenz? | ja |
+| W2.3 | Ist der vollständige Quellcode verfügbar? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -418,16 +418,16 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 2 | Quellcode einsehbar, aber eingeschränkte Lizenz |
 | 0 | Proprietär |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 4 **Begründung:** OSI-Lizenz, kompletter Code öffentlich.
 
 ### W3 Dokumentation und Community (Gewicht 3)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| W3.1 | Gibt es eine Anleitung für Endnutzer? | ja / nein |
-| W3.2 | Ist die Dokumentation auf Deutsch verfügbar? | ja / nein |
-| W3.3 | Gibt es FAQ oder Tutorials? | ja / nein |
-| W3.4 | Gibt es ein aktives Forum oder aktive Issue-Diskussionen? | ja / nein |
+| W3.1 | Gibt es eine Anleitung für Endnutzer? | ja, aber schlecht |
+| W3.2 | Ist die Dokumentation auf Deutsch verfügbar? | nein |
+| W3.3 | Gibt es FAQ oder Tutorials? | nein |
+| W3.4 | Gibt es ein aktives Forum oder aktive Issue-Diskussionen? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -437,7 +437,7 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | Eines erfüllt |
 | 0 | Keines erfüllt |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 1 **Begründung:** Anleitung und Doku vorhanden, aber unübersichtlich und für Laien ungeeignet.
 
 ---
 
@@ -445,33 +445,33 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 
 | Nr. | Kriterium | Gewicht | Punkte (0–4) | Gewichtet (Gewicht × Punkte / 4) |
 |---|---|---:|:---:|:---:|
-| S1 | AEAD und Integritätsschutz | 6 | | |
-| S2 | Passwort-KDF | 6 | | |
-| S3 | Post-Quanten-Resistenz | 6 | | |
-| S4 | Sichere Defaults | 6 | | |
-| S5 | Spezifikation und Audits | 6 | | |
-| U1 | Zeit bis zur ersten Verschlüsselung | 8 | | |
-| U2 | Interaktionsschritte | 6 | | |
-| U3 | Fehlermeldungen | 7 | | |
-| U4 | Schlüsselverwaltung | 8 | | |
-| U5 | Schutz vor Fehlbedienung | 6 | | |
-| F1 | Passwort- und Public-Key-Modus | 5 | | |
-| F2 | Mehrere Empfänger | 3 | | |
-| F3 | Große Dateien | 4 | | |
-| F4 | Erweiterbarkeit | 3 | | |
-| P1 | Betriebssystem-Abdeckung | 4 | | |
-| P2 | Installation | 3 | | |
-| P3 | Interoperabilität | 3 | | |
-| W1 | Aktive Entwicklung | 5 | | |
-| W2 | Lizenz | 2 | | |
-| W3 | Dokumentation und Community | 3 | | |
-| | **Nutzwert** | **100** | | |
+| S1 | AEAD und Integritätsschutz | 6 | 4 | 6,00 |
+| S2 | Passwort-KDF | 6 | 3 | 4,50 |
+| S3 | Post-Quanten-Resistenz | 6 | 3 | 4,50 |
+| S4 | Sichere Defaults | 6 | 3 | 4,50 |
+| S5 | Spezifikation und Audits | 6 | 3 | 4,50 |
+| U1 | Zeit bis zur ersten Verschlüsselung | 8 | 1 | 2,00 |
+| U2 | Interaktionsschritte | 6 | 3 | 4,50 |
+| U3 | Fehlermeldungen | 7 | 2 | 3,50 |
+| U4 | Schlüsselverwaltung | 8 | 3 | 6,00 |
+| U5 | Schutz vor Fehlbedienung | 6 | 1 | 1,50 |
+| F1 | Passwort- und Public-Key-Modus | 5 | 4 | 5,00 |
+| F2 | Mehrere Empfänger | 3 | 3 | 2,25 |
+| F3 | Große Dateien | 4 | 2 | 2,00 |
+| F4 | Erweiterbarkeit | 3 | 4 | 3,00 |
+| P1 | Betriebssystem-Abdeckung | 4 | 3 | 3,00 |
+| P2 | Installation | 3 | 3 | 2,25 |
+| P3 | Interoperabilität | 3 | 4 | 3,00 |
+| W1 | Aktive Entwicklung | 5 | 4 | 5,00 |
+| W2 | Lizenz | 2 | 4 | 2,00 |
+| W3 | Dokumentation und Community | 3 | 1 | 0,75 |
+| | **Nutzwert** | **100** | — | **69,75** |
 
 ## Beobachtete UX-Schwachstellen
 
 | Nr. | Situation | Beobachtung | Schweregrad (gering / mittel / hoch) | Konsequenz für Aegis |
 |---|---|---|---|---|
-| 1 | | | | |
-| 2 | | | | |
-| 3 | | | | |
+| 1 | Standardausgabe ohne Zieldatei | Ruft man `age file` ohne `-o` oder Pipe auf, werden unlesbare Binärdaten direkt in die Konsole gestreamt. | mittel | Zieldateipfad oder Speicherdialog verpflichtend vorgeben; keine rohen Chiphertexte in Terminals dumpen. |
+| 2 | Zieldatei existiert bereits | `age -o datei.bin` überschreibt bestehende Dateien am Zielort ohne jede Warnung oder Bestätigung. | hoch | Überschreibschutz mit Bestätigungsdialog implementieren oder Datei standardmäßig versioniert umbenennen. |
+| 3 | Verarbeitung großer Dateien | Bei großen Payloads (Multi-GB) gibt es keinerlei visuelles Feedback, Fortschrittsbalken oder Restzeitanzeige. | mittel | Fortschrittsanzeige mit Prozentangabe, Datendurchsatz und Restzeit integrieren. |
 

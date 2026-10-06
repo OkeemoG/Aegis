@@ -4,22 +4,22 @@
 
 | Feld | Eintrag |
 |---|---|
-| Tool | |
-| Version  |
-| Betriebssystem und Version | |
-| Hardware (CPU, RAM) | |
-| Datum | |
-| Prüfer | |
+| Tool | Kleopatra Gpg4win |
+| Version | 5.1.1 |
+| Betriebssystem und Version | Windows 11 Education 25H2 |
+| Hardware (CPU, RAM) | AMD Ryzen AI 9 HX 370, 32GB DDR5-5200 |
+| Datum | 06.10.2026 |
+| Prüfer | Oliver Decker |
 
 ## Vorbereitung
 
 | Nr. | Testdatei | Beschreibung | Vorhanden |
 |---|---|---|:---:|
-| D1 | `test_1gb.bin` | 1 GB Zufallsdaten | [ ] |
-| D2 | `test_5gb.bin` | 5 GB Zufallsdaten | [ ] |
-| D3 | `manipuliert_mitte` | Verschlüsselte D1, ein Byte in der Dateimitte verändert | [ ] |
-| D4 | `manipuliert_header` | Verschlüsselte D1, ein Byte im Header verändert | [ ] |
-| D5 | `abgeschnitten` | Verschlüsselte D1, letzte 1000 Byte entfernt | [ ] |
+| D1 | `test_1gb.bin` | 1 GB Zufallsdaten | ☑ |
+| D2 | `test_5gb.bin` | 5 GB Zufallsdaten | ☑ |
+| D3 | `manipuliert_mitte` | Verschlüsselte D1, ein Byte in der Dateimitte verändert | ☑ |
+| D4 | `manipuliert_header` | Verschlüsselte D1, ein Byte im Header verändert | ☑ |
+| D5 | `abgeschnitten` | Verschlüsselte D1, letzte 1000 Byte entfernt | ☑ |
 
 ---
 
@@ -29,12 +29,12 @@
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| S1.1 | Welcher Verschlüsselungsalgorithmus wird verwendet? | XChaCha20 |
-| S1.2 | Ist die Verschlüsselung authentifiziert (AEAD oder Encrypt-then-MAC)? | ja / nein |
-| S1.3 | Ist der Header authentifiziert? | ja / nein |
-| S1.4 | Sind Chunks gegen Vertauschen und Löschen geschützt? | ja / nein |
-| S1.5 | Wird ein Abschneiden der Datei erkannt (Test mit D5)? | ja / nein |
-| S1.6 | Wird eine Manipulation erkannt (Test mit D3 und D4)? | ja / nein |
+| S1.1 | Welcher Verschlüsselungsalgorithmus wird verwendet? | AES-256 (CFB) |
+| S1.2 | Ist die Verschlüsselung authentifiziert? | (nein), OpenPGP-CFB mit MDC (MAC-then-Encrypt) |
+| S1.3 | Ist der Header authentifiziert? | nein |
+| S1.4 | Sind Chunks gegen Vertauschen und Löschen geschützt? | nein |
+| S1.5 | Wird ein Abschneiden der Datei erkannt (Test mit D5)? | ja |
+| S1.6 | Wird eine Manipulation erkannt (Test mit D3 und D4)? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -44,16 +44,16 @@
 | 1 | Integrität nur über separate Signatur möglich |
 | 0 | Kein Integritätsschutz |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 2 **Begründung:** Keine moderne/ echte Authentifizierung von Header und Payload
 
 ### S2 Stärke der Passwort-KDF (Gewicht 6)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| S2.1 | Welche KDF wird im Passwortmodus verwendet? | |
-| S2.2 | Welche Parameter (Speicher, Iterationen, Parallelität)? | |
-| S2.3 | Kann der Nutzer die Parameter abschwächen? | ja / nein |
-| S2.4 | Gemessene Dauer der Schlüsselableitung (Sekunden) | |
+| S2.1 | Welche KDF wird im Passwortmodus verwendet? | S2K 3 |
+| S2.2 | Welche Parameter (Speicher, Iterationen, Parallelität)? | Speicher: 0 MiB (rein CPU-basiert), Iterationen: ~6,5 · 10⁷ verarbeitete Bytes (count = 65011712), Parallelität: 1 |
+| S2.3 | Kann der Nutzer die Parameter abschwächen? | ja |
+| S2.4 | Gemessene Dauer der Schlüsselableitung (Sekunden) | 0,1s |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -63,7 +63,7 @@
 | 1 | Iteriertes S2K oder PBKDF2 mit niedriger Iterationszahl |
 | 0 | Kein Passwortmodus oder unsichere Ableitung |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 1 **Begründung:** Abschwächbares S2K 3.
 
 ### S3 Post-Quanten-Resistenz (Gewicht 6)
 

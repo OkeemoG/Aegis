@@ -5,7 +5,7 @@
 | Feld | Eintrag |
 |---|---|
 | Tool | |
-| Version | |
+| Version  |
 | Betriebssystem und Version | |
 | Hardware (CPU, RAM) | |
 | Datum | |
@@ -29,7 +29,7 @@
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| S1.1 | Welcher Verschlüsselungsalgorithmus wird verwendet? | |
+| S1.1 | Welcher Verschlüsselungsalgorithmus wird verwendet? | XChaCha20 |
 | S1.2 | Ist die Verschlüsselung authentifiziert (AEAD oder Encrypt-then-MAC)? | ja / nein |
 | S1.3 | Ist der Header authentifiziert? | ja / nein |
 | S1.4 | Sind Chunks gegen Vertauschen und Löschen geschützt? | ja / nein |

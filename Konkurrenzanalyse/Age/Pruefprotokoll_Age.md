@@ -475,3 +475,17 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 2 | Zieldatei existiert bereits | `age -o datei.bin` überschreibt bestehende Dateien am Zielort ohne jede Warnung oder Bestätigung. | hoch | Überschreibschutz mit Bestätigungsdialog implementieren oder Datei standardmäßig versioniert umbenennen. |
 | 3 | Verarbeitung großer Dateien | Bei großen Payloads (Multi-GB) gibt es keinerlei visuelles Feedback, Fortschrittsbalken oder Restzeitanzeige. | mittel | Fortschrittsanzeige mit Prozentangabe, Datendurchsatz und Restzeit integrieren. |
 
+### Hinweis zur Verwendung von KI-Werkzeugen
+
+| Eingesetztes KI-Werkzeug | Zweck / Art der Nutzung |
+|---|---|
+| Claude Opus 5.5 | Erste Erstellung der Kriterien für die Nutzwertanalyse, Bereitstellung des Prüfprotokolls als Markdown Code |
+| Gemini 3.8 Flash | Unterstützung bei der Beantwortung einzelner Prüffragen und der Durchsuchung von Dokumentation |
+
+### Ergänzende Quellen & Eigene Prüfleistungen
+
+| ID | Typ | Urheber / Projekt | Titel / Ressource | Stand / URL |
+|---|---|---|---|---|
+| **[REPO-AGE]** | GitHub-Repository | Filippo Valsorda | *FiloSottile/age: A simple, modern and secure encryption tool (and Go library) with small keys, no config options, and UNIX-style composability* | GitHub Repository<br>`https://github.com/FiloSottile/age` |
+| **[SPEC-C2SP-AGE]** | Spezifikation (C2SP) | Community-Curated Standards Panel (C2SP) / Filippo Valsorda | *The age encryption format (v1)* | C2SP Spezifikation (GitHub)<br>`https://github.com/C2SP/C2SP/blob/main/age.md` |
+| **[EXP-TESTS-AGE]** | Eigene Erhebung | Eigene Arbeitsgruppe | *Empirische Durchsatz- und Sicherheitsanalyse (age CLI)* | Eigene Prüfungen (2026) |

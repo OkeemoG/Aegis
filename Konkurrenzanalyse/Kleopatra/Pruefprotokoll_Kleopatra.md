@@ -180,12 +180,14 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 
 | Szenario | Fehler erkannt | Für Laien verständlich | Handlungsempfehlung | Ursache korrekt benannt | Wortlaut der Meldung |
 |---|:---:|:---:|:---:|:---:|---|
-| T3 falsches Passwort | [ ] | [ ] | [ ] | [ ] | |
-| D3 Manipulation Mitte | [ ] | [ ] | [ ] | [ ] | |
-| D4 Manipulation Header | [ ] | [ ] | [ ] | [ ] | |
-| D5 abgeschnitten | [ ] | [ ] | [ ] | [ ] | |
-| Falscher privater Schlüssel | [ ] | [ ] | [ ] | [ ] | |
-| **Anzahl erfüllt (max. 20)** | | | | | |
+| T3 falsches Passwort | ☑ | ☑ | [ ] | ☑ | Failed to decrypt ‘test_1gb.bin.gpg’: Bad passphrase. |
+| D3 Manipulation Mitte | ☑ | [ ] | [ ] | (☑) | Failed to decrypt ‘test_1gb.bin - Copy.gpg’: Checksum error. |
+| D4 Manipulation Header | ☑ | [ ] | [ ] | (☑) | The file ‘C:\Users\user\dev\Studienarbeit\Aegis\Konkurrenzanalyse\test_1gb.bin - Copy (2).gpg’ contains certificates and can't be decrypted or verified. |
+| D5 abgeschnitten | ☑ | [ ] | [ ] | (☑) | Failed to decrypt ‘test_1gb.bin.gpg’: Checksum error. |
+| Falscher privater Schlüssel | ☑ | [ ] | [ ] | [ ] | Unable to decrypt ‘test_1gb.bin_asymmetric.gpg’: No secret key.
+The data was not encrypted for any secret key in your certificate list.
+Recipient: One unknown recipient |
+| **Anzahl erfüllt (max. 20)** | 5 | 0 | 0 | 2,5 | - |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -195,15 +197,15 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | 5 bis 9 erfüllt |
 | 0 | Weniger als 5 erfüllt |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 1 **Begründung:** 7,5 erfüllt.
 
 ### U4 Komplexität der Schlüsselverwaltung (Gewicht 8)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| U4.1 | Schritte bis zum eigenen Schlüsselpaar | |
-| U4.2 | Schritte bis zur Weitergabe des öffentlichen Schlüssels | |
-| U4.3 | Schritte bis zum Import eines fremden Schlüssels | |
+| U4.1 | Schritte bis zum eigenen Schlüsselpaar | 4 |
+| U4.2 | Schritte bis zur Weitergabe des öffentlichen Schlüssels | 2 |
+| U4.3 | Schritte bis zum Import eines fremden Schlüssels | 4 |
 | U4.4 | Wird ein Schlüssel als kopierbare Zeichenkette dargestellt? | ja / nein |
 | U4.5 | Welche Fachbegriffe muss man verstehen? | [ ] Zertifikat [ ] Fingerprint [ ] Beglaubigung [ ] Vertrauensstufe [ ] Keyserver [ ] Ablaufdatum [ ] Identität/Recipient |
 | U4.6 | Gibt es Warnungen oder Rückfragen, die ohne Vorwissen unverständlich sind? | |

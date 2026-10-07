@@ -471,9 +471,9 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 
 | Nr. | Situation | Beobachtung | Schweregrad (gering / mittel / hoch) | Konsequenz für Aegis |
 |---|---|---|---|---|
-| 1 | Standardausgabe ohne Zieldatei | Ruft man `age file` ohne `-o` oder Pipe auf, werden unlesbare Binärdaten direkt in die Konsole gestreamt. | mittel | Zieldateipfad oder Speicherdialog verpflichtend vorgeben; keine rohen Chiphertexte in Terminals dumpen. |
-| 2 | Zieldatei existiert bereits | `age -o datei.bin` überschreibt bestehende Dateien am Zielort ohne jede Warnung oder Bestätigung. | hoch | Überschreibschutz mit Bestätigungsdialog implementieren oder Datei standardmäßig versioniert umbenennen. |
-| 3 | Verarbeitung großer Dateien | Bei großen Payloads (Multi-GB) gibt es keinerlei visuelles Feedback, Fortschrittsbalken oder Restzeitanzeige. | mittel | Fortschrittsanzeige mit Prozentangabe, Datendurchsatz und Restzeit integrieren. |
+| 1 | | | | |
+| 2 | | | | |
+| 3 | | | | |
 
 ### Hinweis zur Verwendung von KI-Werkzeugen
 

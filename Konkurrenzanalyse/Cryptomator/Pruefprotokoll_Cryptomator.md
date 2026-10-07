@@ -4,12 +4,12 @@
 
 | Feld | Eintrag |
 |---|---|
-| Tool | |
-| Version | |
-| Betriebssystem und Version | |
-| Hardware (CPU, RAM) | |
-| Datum | |
-| Prüfer | |
+| Tool | Cryptomator |
+| Version | 1.19.3 |
+| Betriebssystem und Version | Windows 11 Education 25H2 |
+| Hardware (CPU, RAM) | AMD Ryzen AI 9 HX 370, 32GB DDR5-5200 |
+| Datum | 07.10.2026 |
+| Prüfer | Oliver Decker |
 
 ## Abgrenzung
 

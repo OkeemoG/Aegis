@@ -44,13 +44,13 @@
 | 1 | Integrität nur über separate Signatur möglich |
 | 0 | Kein Integritätsschutz |
 
-**Punkte:** 2 **Begründung:** Keine moderne/ echte Authentifizierung von Header und Payload
+**Punkte:** 2 **Begründung:** Keine moderne/echte Authentifizierung von Header und Payload; veraltete MDC-Konstruktion.
 
 ### S2 Stärke der Passwort-KDF (Gewicht 6)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| S2.1 | Welche KDF wird im Passwortmodus verwendet? | S2K 3 |
+| S2.1 | Welche KDF wird im Passwortmodus verwendet? | S2K 3 (Iterated and Salted S2K) |
 | S2.2 | Welche Parameter (Speicher, Iterationen, Parallelität)? | Speicher: 0 MiB (rein CPU-basiert), Iterationen: ~6,5 · 10⁷ verarbeitete Bytes (count = 65011712), Parallelität: 1 |
 | S2.3 | Kann der Nutzer die Parameter abschwächen? | ja |
 | S2.4 | Gemessene Dauer der Schlüsselableitung (Sekunden) | 0,1s |
@@ -63,7 +63,7 @@
 | 1 | Iteriertes S2K oder PBKDF2 mit niedriger Iterationszahl |
 | 0 | Kein Passwortmodus oder unsichere Ableitung |
 
-**Punkte:** 1 **Begründung:** Abschwächbares S2K 3.
+**Punkte:** 1 **Begründung:** Abschwächbares S2K 3 ohne Speicherelement (keine Memory-Hard KDF).
 
 ### S3 Post-Quanten-Resistenz (Gewicht 6)
 
@@ -89,7 +89,7 @@
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| S4.1 | Sind die Standardeinstellungen ohne Änderung sicher? | (ja), s2k und MDC veraltet |
+| S4.1 | Sind die Standardeinstellungen ohne Änderung sicher? | (ja), S2K und MDC jedoch kryptografisch veraltet |
 | S4.2 | Kann der Nutzer veraltete oder unsichere Algorithmen auswählen? | ja |
 | S4.3 | Ist ein leeres Passwort möglich? | nein |
 | S4.4 | Wird bei schwachem Passwort gewarnt oder blockiert? | ja, gewarnt |
@@ -103,7 +103,7 @@
 | 1 | Unsichere Optionen gleichrangig neben sicheren wählbar |
 | 0 | Unsichere Standardeinstellungen |
 
-**Punkte:** 2 **Begründung:** Unsichere Algorithmen können ausgewählt werden und Klartext bleibt unbeabsichtigt zurück.
+**Punkte:** 2 **Begründung:** Unsichere Optionen über Expertenmenüs wählbar, Klartext bleibt standardmäßig unberührt liegen.
 
 ### S5 Öffentliche Spezifikation und Audits (Gewicht 6)
 
@@ -111,7 +111,7 @@
 |---|---|---|
 | S5.1 | Gibt es eine öffentliche Spezifikation des Dateiformats? | ja |
 | S5.2 | Ist das Format standardisiert (RFC, C2SP o. Ä.)? | ja, IETF RFC 4880, RFC 9580 |
-| S5.3 | Gab es ein unabhängiges Sicherheitsaudit? Wer, wann? | ja, u.a. Cure53, 2017 |
+| S5.3 | Gab es ein unabhängiges Sicherheitsaudit? Wer, wann? | ja, u. a. Cure53 (2017) |
 | S5.4 | Wurden die Befunde behoben? | ja |
 | S5.5 | Gibt es öffentliche Testvektoren? | ja |
 
@@ -123,7 +123,7 @@
 | 1 | Nur informelle Beschreibung |
 | 0 | Weder Spezifikation noch Audit |
 
-**Punkte:** 4 **Begründung:** Alle Bedingungen erfüllt
+**Punkte:** 4 **Begründung:** Vollständig standardisiert (IETF RFC), externe Audits durchgeführt und Befunde behoben, Testvektoren verfügbar.
 
 ---
 
@@ -154,7 +154,7 @@
 | 1 | Über 5 Minuten oder mehrfach Dokumentation nötig |
 | 0 | Aufgabe nicht gelöst |
 
-**Punkte:** 4 **Begründung:** <1min ohne Hilfe.
+**Punkte:** 4 **Begründung:** Mit 35 Sekunden unter 1 Minute ohne externe Hilfe gelöst.
 
 ### U2 Anzahl der Interaktionsschritte (Gewicht 6)
 
@@ -174,20 +174,18 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 | 1 | 16 bis 25 Schritte |
 | 0 | Mehr als 25 Schritte |
 
-**Punkte:** 3 **Begründung:** 6,25 Schritte im Durchschnitt.
+**Punkte:** 3 **Begründung:** Durchschnittlich 6,25 Schritte pro Vorgang (fällt in Stufe 6 bis 10 Schritte).
 
 ### U3 Verständlichkeit von Fehlermeldungen (Gewicht 7)
 
 | Szenario | Fehler erkannt | Für Laien verständlich | Handlungsempfehlung | Ursache korrekt benannt | Wortlaut der Meldung |
 |---|:---:|:---:|:---:|:---:|---|
-| T3 falsches Passwort | ☑ | ☑ | [ ] | ☑ | Failed to decrypt ‘test_1gb.bin.gpg’: Bad passphrase. |
-| D3 Manipulation Mitte | ☑ | [ ] | [ ] | (☑) | Failed to decrypt ‘test_1gb.bin - Copy.gpg’: Checksum error. |
-| D4 Manipulation Header | ☑ | [ ] | [ ] | (☑) | The file ‘C:\Users\user\dev\Studienarbeit\Aegis\Konkurrenzanalyse\test_1gb.bin - Copy (2).gpg’ contains certificates and can't be decrypted or verified. |
-| D5 abgeschnitten | ☑ | [ ] | [ ] | (☑) | Failed to decrypt ‘test_1gb.bin.gpg’: Checksum error. |
-| Falscher privater Schlüssel | ☑ | [ ] | [ ] | [ ] | Unable to decrypt ‘test_1gb.bin_asymmetric.gpg’: No secret key.
-The data was not encrypted for any secret key in your certificate list.
-Recipient: One unknown recipient |
-| **Anzahl erfüllt (max. 20)** | 5 | 0 | 0 | 2,5 | - |
+| T3 falsches Passwort | ☑ | ☑ | ☐ | ☑ | Failed to decrypt ‘test_1gb.bin.gpg’: Bad passphrase. |
+| D3 Manipulation Mitte | ☑ | ☐ | ☐ | (☑) | Failed to decrypt ‘test_1gb.bin - Copy.gpg’: Checksum error. |
+| D4 Manipulation Header | ☑ | ☐ | ☐ | (☑) | The file ‘C:\Users\user\dev\Studienarbeit\Aegis\Konkurrenzanalyse\test_1gb.bin - Copy (2).gpg’ contains certificates and can't be decrypted or verified. |
+| D5 abgeschnitten | ☑ | ☐ | ☐ | (☑) | Failed to decrypt ‘test_1gb.bin.gpg’: Checksum error. |
+| Falscher privater Schlüssel | ☑ | ☐ | ☐ | ☐ | Unable to decrypt ‘test_1gb.bin_asymmetric.gpg’: No secret key. The data was not encrypted for any secret key in your certificate list. Recipient: One unknown recipient |
+| **Anzahl erfüllt (max. 20)** | 5 | 1 | 0 | 2,5 | - |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -197,7 +195,7 @@ Recipient: One unknown recipient |
 | 1 | 5 bis 9 erfüllt |
 | 0 | Weniger als 5 erfüllt |
 
-**Punkte:** 1 **Begründung:** 7,5 erfüllt.
+**Punkte:** 1 **Begründung:** 8,5 von 20 Bedingungen erfüllt (5 erkannt, 1 laienverständlich, 0 Handlungsempfehlungen, 2,5 Ursachen korrekt benannt).
 
 ### U4 Komplexität der Schlüsselverwaltung (Gewicht 8)
 
@@ -206,9 +204,9 @@ Recipient: One unknown recipient |
 | U4.1 | Schritte bis zum eigenen Schlüsselpaar | 4 |
 | U4.2 | Schritte bis zur Weitergabe des öffentlichen Schlüssels | 2 |
 | U4.3 | Schritte bis zum Import eines fremden Schlüssels | 4 |
-| U4.4 | Wird ein Schlüssel als kopierbare Zeichenkette dargestellt? | ja / nein |
-| U4.5 | Welche Fachbegriffe muss man verstehen? | [ ] Zertifikat [ ] Fingerprint [ ] Beglaubigung [ ] Vertrauensstufe [ ] Keyserver [ ] Ablaufdatum [ ] Identität/Recipient |
-| U4.6 | Gibt es Warnungen oder Rückfragen, die ohne Vorwissen unverständlich sind? | |
+| U4.4 | Wird ein Schlüssel als kopierbare Zeichenkette dargestellt? | nein |
+| U4.5 | Welche Fachbegriffe muss man verstehen? | ☑ Zertifikat ☑ Fingerprint ☑ Beglaubigung ☑ Vertrauensstufe ☑ Keyserver ☑ Ablaufdatum ☑ Identität/Recipient |
+| U4.6 | Gibt es Warnungen oder Rückfragen, die ohne Vorwissen unverständlich sind? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -218,19 +216,19 @@ Recipient: One unknown recipient |
 | 1 | Vertrauensmodell oder Beglaubigungen müssen verstanden werden |
 | 0 | Ohne Vorwissen nicht bedienbar |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 1 **Begründung:** Vertrauensmodell, Beglaubigungen und 7 Fachbegriffe müssen verstanden werden; Warnungen ohne kryptografisches Vorwissen unverständlich.
 
 ### U5 Schutz vor Fehlbedienung (Gewicht 6)
 
 | Nr. | Schutzmechanismus | Vorhanden |
 |---|---|:---:|
-| U5.1 | Passwort muss bestätigt werden | [ ] |
-| U5.2 | Anzeige der Passwortstärke | [ ] |
-| U5.3 | Warnung vor dem Überschreiben bestehender Dateien | [ ] |
-| U5.4 | Abbruch hinterlässt keine unvollständige Ausgabedatei | [ ] |
-| U5.5 | Hinweis, dass ein vergessenes Passwort nicht wiederherstellbar ist | [ ] |
-| U5.6 | Originaldatei wird nicht ohne Nachfrage gelöscht | [ ] |
-| **Anzahl erfüllt (max. 6)** | | |
+| U5.1 | Passwort muss bestätigt werden | ☑ |
+| U5.2 | Anzeige der Passwortstärke | (☑) |
+| U5.3 | Warnung vor dem Überschreiben bestehender Dateien | ☑ |
+| U5.4 | Abbruch hinterlässt keine unvollständige Ausgabedatei | ☐ |
+| U5.5 | Hinweis, dass ein vergessenes Passwort nicht wiederherstellbar ist | ☐ |
+| U5.6 | Originaldatei wird nicht ohne Nachfrage gelöscht | ☑ |
+| **Anzahl erfüllt (max. 6)** | | **3,5** |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -240,7 +238,7 @@ Recipient: One unknown recipient |
 | 1 | 1 bis 2 erfüllt |
 | 0 | Keiner erfüllt |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 2 **Begründung:** 3 volle und 1 Teilerfüllung (Passwortstärke nur Warnung; bei Abbruch verbleibt `.part`-Datei).
 
 ---
 
@@ -250,9 +248,9 @@ Recipient: One unknown recipient |
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| F1.1 | Passwortmodus vorhanden? | ja / nein |
-| F1.2 | Public-Key-Modus vorhanden? | ja / nein |
-| F1.3 | Sind beide über dieselbe Oberfläche erreichbar? | ja / nein |
+| F1.1 | Passwortmodus vorhanden? | ja |
+| F1.2 | Public-Key-Modus vorhanden? | ja |
+| F1.3 | Sind beide über dieselbe Oberfläche erreichbar? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -262,15 +260,15 @@ Recipient: One unknown recipient |
 | 1 | Nur ein Modus, eingeschränkt |
 | 0 | Keiner nutzbar |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 4 **Begründung:** Beide Modi vollwertig nebeneinander im selben Dialog erreichbar.
 
 ### F2 Mehrere Empfänger (Gewicht 3)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| F2.1 | Kann eine Datei für mehrere Empfänger verschlüsselt werden? | ja / nein |
-| F2.2 | Getestete Anzahl Empfänger | |
-| F2.3 | Können Empfänger nachträglich hinzugefügt werden? | ja / nein |
+| F2.1 | Kann eine Datei für mehrere Empfänger verschlüsselt werden? | ja |
+| F2.2 | Getestete Anzahl Empfänger | unbegrenzt (softwareseitig kein Limit) |
+| F2.3 | Können Empfänger nachträglich hinzugefügt werden? | nein |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -280,17 +278,17 @@ Recipient: One unknown recipient |
 | 1 | Nur über Umwege (z. B. mehrfach verschlüsseln) |
 | 0 | Nicht möglich |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 3 **Begründung:** Beliebig viele Empfänger gleichzeitig wählbar; nachträgliches Hinzufügen ohne vollständige Neuverschlüsselung technisch nicht möglich.
 
 ### F3 Große Dateien und Streaming (Gewicht 4)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| F3.1 | Wurde D2 erfolgreich ver- und entschlüsselt? | ja / nein |
-| F3.2 | Maximaler RAM-Verbrauch beim Verschlüsseln | ___ MB |
-| F3.3 | Maximaler RAM-Verbrauch beim Entschlüsseln | ___ MB |
-| F3.4 | Gibt es eine Fortschrittsanzeige? | ja / nein |
-| F3.5 | Gibt es ein dokumentiertes Größenlimit? | |
+| F3.1 | Wurde D2 erfolgreich ver- und entschlüsselt? | ja |
+| F3.2 | Maximaler RAM-Verbrauch beim Verschlüsseln | 138,39 MB |
+| F3.3 | Maximaler RAM-Verbrauch beim Entschlüsseln | 136,61 MB |
+| F3.4 | Gibt es eine Fortschrittsanzeige? | ja |
+| F3.5 | Gibt es ein dokumentiertes Größenlimit? | nein |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -300,15 +298,15 @@ Recipient: One unknown recipient |
 | 1 | Größenlimit oder extrem langsam |
 | 0 | Fehlgeschlagen |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 4 **Begründung:** 5-GB-Datei D2 erfolgreich ver- und entschlüsselt, RAM konstant unter 200 MB, Fortschrittsanzeige vorhanden.
 
 ### F4 Erweiterbarkeit (Gewicht 3)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| F4.1 | Gibt es eine Plugin-Schnittstelle? | ja / nein |
-| F4.2 | Werden Hardware-Token unterstützt (YubiKey, Smartcard, TPM)? | |
-| F4.3 | Gibt es eine Bibliothek oder API für Entwickler? | ja / nein |
+| F4.1 | Gibt es eine Plugin-Schnittstelle? | nein |
+| F4.2 | Werden Hardware-Token unterstützt (YubiKey, Smartcard, TPM)? | ja (YubiKey, Smartcard via scdaemon; TPM nein) |
+| F4.3 | Gibt es eine Bibliothek oder API für Entwickler? | ja (GPGME / GpgMEpp) |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -318,7 +316,7 @@ Recipient: One unknown recipient |
 | 1 | Eines der drei, eingeschränkt |
 | 0 | Keines |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 3 **Begründung:** Hardware-Token und vollwertige Entwicklerbibliothek vorhanden, aber keine native Plugin-Schnittstelle.
 
 ---
 
@@ -328,11 +326,11 @@ Recipient: One unknown recipient |
 
 | System | Offiziell unterstützt |
 |---|:---:|
-| Windows | [ ] |
-| macOS | [ ] |
-| Linux | [ ] |
-| Android | [ ] |
-| iOS | [ ] |
+| Windows | ☑ |
+| macOS | ☐ |
+| Linux | ☑ |
+| Android | ☐ |
+| iOS | ☐ |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -342,17 +340,17 @@ Recipient: One unknown recipient |
 | 1 | Ein System |
 | 0 | Nur inoffizielle Portierungen |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 2 **Begründung:** Offiziell und nativ unterstützt für zwei Systeme (Windows und Linux).
 
 ### P2 Installation und Portabilität (Gewicht 3)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| P2.1 | Größe des Downloads | ___ MB |
-| P2.2 | Sind Administratorrechte nötig? | ja / nein |
-| P2.3 | Gibt es eine portable Version ohne Installation? | ja / nein |
-| P2.4 | Dauer bis zur Einsatzbereitschaft | ___ min |
-| P2.5 | Müssen zusätzliche Abhängigkeiten installiert werden? | ja / nein |
+| P2.1 | Größe des Downloads | 43.781 KB |
+| P2.2 | Sind Administratorrechte nötig? | ja |
+| P2.3 | Gibt es eine portable Version ohne Installation? | nein |
+| P2.4 | Dauer bis zur Einsatzbereitschaft | 5 min |
+| P2.5 | Müssen zusätzliche Abhängigkeiten installiert werden? | nein |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -362,15 +360,15 @@ Recipient: One unknown recipient |
 | 1 | Zusätzliche Abhängigkeiten oder Paketmanager nötig |
 | 0 | Nur aus dem Quellcode installierbar |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 2 **Begründung:** Installer erfordert zwingend Administratorrechte zur Systemeinbindung.
 
 ### P3 Interoperabilität (Gewicht 3)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| P3.1 | Gibt es weitere kompatible Implementierungen? Welche? | |
-| P3.2 | Test: Datei mit Tool A verschlüsselt, mit Tool B entschlüsselt | erfolgreich / nicht erfolgreich |
-| P3.3 | Ist das Format versioniert und abwärtskompatibel? | ja / nein |
+| P3.1 | Gibt es weitere kompatible Implementierungen? Welche? | ja (Sequoia-PGP, RNP/Thunderbird, GPG Suite, OpenPGP.js, Bouncy Castle, GopenPGP) |
+| P3.2 | Test: Datei mit Tool A verschlüsselt, mit Tool B entschlüsselt | erfolgreich (GnuPG-Chiffrat erfolgreich mit Sequoia `sq decrypt` entschlüsselt) |
+| P3.3 | Ist das Format versioniert und abwärtskompatibel? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -380,7 +378,7 @@ Recipient: One unknown recipient |
 | 1 | Format nur aus dem Quellcode ableitbar |
 | 0 | Proprietäres Format |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 4 **Begründung:** Mehrere voneinander unabhängige OpenPGP-Implementierungen verfügbar; Entschlüsselungstest erfolgreich durchgeführt.
 
 ---
 
@@ -390,11 +388,11 @@ Recipient: One unknown recipient |
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| W1.1 | Datum des letzten Releases | |
-| W1.2 | Anzahl Releases in den letzten 12 Monaten | |
-| W1.3 | Anzahl aktiver Maintainer | |
-| W1.4 | Ist das Repository archiviert? | ja / nein |
-| W1.5 | Reaktionszeit auf neue Issues (Stichprobe) | |
+| W1.1 | Datum des letzten Releases | 23.09.2026 |
+| W1.2 | Anzahl Releases in den letzten 12 Monaten | 4 |
+| W1.3 | Anzahl aktiver Maintainer | 2–4 |
+| W1.4 | Ist das Repository archiviert? | nein |
+| W1.5 | Reaktionszeit auf neue Issues (Stichprobe) | 1–4 Tage |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -404,15 +402,15 @@ Recipient: One unknown recipient |
 | 1 | Letztes Release über 2 Jahre alt |
 | 0 | Archiviert oder eingestellt |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 4 **Begründung:** 4 Releases im letzten Jahr, aktive Betreuung durch mehrere Entwickler, zügige Triage bei Issues.
 
 ### W2 Lizenz (Gewicht 2)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| W2.1 | Lizenz | |
-| W2.2 | OSI-anerkannte Open-Source-Lizenz? | ja / nein |
-| W2.3 | Ist der vollständige Quellcode verfügbar? | ja / nein |
+| W2.1 | Lizenz | GNU GPLv2+ |
+| W2.2 | OSI-anerkannte Open-Source-Lizenz? | ja |
+| W2.3 | Ist der vollständige Quellcode verfügbar? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -420,16 +418,16 @@ Recipient: One unknown recipient |
 | 2 | Quellcode einsehbar, aber eingeschränkte Lizenz |
 | 0 | Proprietär |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 4 **Begründung:** Anerkannte OSI-Lizenz (GPLv2+) und vollständig einsehbarer Quellcode.
 
 ### W3 Dokumentation und Community (Gewicht 3)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| W3.1 | Gibt es eine Anleitung für Endnutzer? | ja / nein |
-| W3.2 | Ist die Dokumentation auf Deutsch verfügbar? | ja / nein |
-| W3.3 | Gibt es FAQ oder Tutorials? | ja / nein |
-| W3.4 | Gibt es ein aktives Forum oder aktive Issue-Diskussionen? | ja / nein |
+| W3.1 | Gibt es eine Anleitung für Endnutzer? | ja |
+| W3.2 | Ist die Dokumentation auf Deutsch verfügbar? | ja |
+| W3.3 | Gibt es FAQ oder Tutorials? | ja |
+| W3.4 | Gibt es ein aktives Forum oder aktive Issue-Diskussionen? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -439,7 +437,7 @@ Recipient: One unknown recipient |
 | 1 | Eines erfüllt |
 | 0 | Keines erfüllt |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 4 **Begründung:** Deutschsprachiges Gpg4win-Kompendium, Handbuch, FAQs, Tutorials und aktives Forum vorhanden.
 
 ---
 
@@ -447,36 +445,40 @@ Recipient: One unknown recipient |
 
 | Nr. | Kriterium | Gewicht | Punkte (0–4) | Gewichtet (Gewicht × Punkte / 4) |
 |---|---|---:|:---:|:---:|
-| S1 | AEAD und Integritätsschutz | 6 | | |
-| S2 | Passwort-KDF | 6 | | |
-| S3 | Post-Quanten-Resistenz | 6 | | |
-| S4 | Sichere Defaults | 6 | | |
-| S5 | Spezifikation und Audits | 6 | | |
-| U1 | Zeit bis zur ersten Verschlüsselung | 8 | | |
-| U2 | Interaktionsschritte | 6 | | |
-| U3 | Fehlermeldungen | 7 | | |
-| U4 | Schlüsselverwaltung | 8 | | |
-| U5 | Schutz vor Fehlbedienung | 6 | | |
-| F1 | Passwort- und Public-Key-Modus | 5 | | |
-| F2 | Mehrere Empfänger | 3 | | |
-| F3 | Große Dateien | 4 | | |
-| F4 | Erweiterbarkeit | 3 | | |
-| P1 | Betriebssystem-Abdeckung | 4 | | |
-| P2 | Installation | 3 | | |
-| P3 | Interoperabilität | 3 | | |
-| W1 | Aktive Entwicklung | 5 | | |
-| W2 | Lizenz | 2 | | |
-| W3 | Dokumentation und Community | 3 | | |
-| | **Nutzwert** | **100** | | |
+| S1 | AEAD und Integritätsschutz | 6 | 2 | 3,00 |
+| S2 | Passwort-KDF | 6 | 1 | 1,50 |
+| S3 | Post-Quanten-Resistenz | 6 | 3 | 4,50 |
+| S4 | Sichere Defaults | 6 | 2 | 3,00 |
+| S5 | Spezifikation und Audits | 6 | 4 | 6,00 |
+| U1 | Zeit bis zur ersten Verschlüsselung | 8 | 4 | 8,00 |
+| U2 | Interaktionsschritte | 6 | 3 | 4,50 |
+| U3 | Fehlermeldungen | 7 | 1 | 1,75 |
+| U4 | Schlüsselverwaltung | 8 | 1 | 2,00 |
+| U5 | Schutz vor Fehlbedienung | 6 | 2 | 3,00 |
+| F1 | Passwort- und Public-Key-Modus | 5 | 4 | 5,00 |
+| F2 | Mehrere Empfänger | 3 | 3 | 2,25 |
+| F3 | Große Dateien | 4 | 4 | 4,00 |
+| F4 | Erweiterbarkeit | 3 | 3 | 2,25 |
+| P1 | Betriebssystem-Abdeckung | 4 | 2 | 2,00 |
+| P2 | Installation | 3 | 2 | 1,50 |
+| P3 | Interoperabilität | 3 | 4 | 3,00 |
+| W1 | Aktive Entwicklung | 5 | 4 | 5,00 |
+| W2 | Lizenz | 2 | 4 | 2,00 |
+| W3 | Dokumentation und Community | 3 | 4 | 3,00 |
+| | **Nutzwert** | **100** | | **67,25** |
+
+---
 
 ## Beobachtete UX-Schwachstellen
 
 | Nr. | Situation | Beobachtung | Schweregrad (gering / mittel / hoch) | Konsequenz für Aegis |
 |---|---|---|---|---|
-| 1 | | | | |
-| 2 | | | | |
-| 3 | | | | |
+| 1 | **Schlüsselweitergabe / Export** | `Strg + C` auf einem Zertifikat in der Übersicht kopiert nur Tabellentext (Name/E-Mail), nicht den Public Key. Der eigentliche Krypto-Export liegt versteckt im Kontextmenü. | **hoch** | Ein Klick auf einen Schlüssel muss sofort den Public Key (kompakt als Bech32-String) kopieren, ohne Metadaten-Verwirrung. |
+| 2 | **Fehlermeldungen bei Integritätsverletzung (D3, D5)** | Manipulationen in der Nutzlast oder abgeschnittene Dateien erzeugen rein technische Low-Level-Fehler (`Checksum error`) ohne Erklärung für Laien. | **mittel** | Verständliche Meldungen mit Handlungsanweisung anzeigen (z. B. *„Die Datei ist beschädigt oder wurde manipuliert. Brechen Sie das Öffnen ab.“*). |
+| 3 | **Schlüsselimport & Vertrauensmodell** | Nach dem Import eines Schlüssels wird der Nutzer direkt mit Fragen zu „Beglaubigung“ und „Vertrauenswürdigkeit des Besitzers“ konfrontiert. | **hoch** | Web-of-Trust-Konzepte weglassen; stattdessen auf einfaches Trust-on-First-Use (TOFU) oder manuelle Fingerprint-Verifikation setzen. |
+| 4 | **Prozessabbruch hinterlässt Dateireste** | Wird ein Verschlüsselungs- oder Entschlüsselungsvorgang manuell abgebrochen, bleibt eine unvollständige `.part`-Datei im Zielverzeichnis liegen. | **gering** | Transaktionale Dateioperationen nutzen: Bei Abbruch oder Fehler müssen unfertige temporäre Ausgabedateien sofort bereinigt werden. |
 
+---
 
 ### Hinweis zur Verwendung von KI-Werkzeugen
 
@@ -485,11 +487,14 @@ Recipient: One unknown recipient |
 | Claude Opus 5.5 | Erste Erstellung der Kriterien für die Nutzwertanalyse, Bereitstellung des Prüfprotokolls als Markdown Code |
 | Gemini 3.8 Flash | Unterstützung bei der Beantwortung einzelner Prüffragen und der Durchsuchung von Dokumentation |
 
+---
+
 ### Ergänzende Quellen & Eigene Prüfleistungen
 
 | ID | Typ | Urheber / Projekt | Titel / Ressource | Stand / URL |
 |---|---|---|---|---|
 | **[REPO-KLEO]** | GitHub-Repository | KDE Community | *KDE/kleopatra: Certificate manager and universal crypto GUI* | GitHub Repository<br>`https://github.com/KDE/kleopatra` |
+| **[REPO-GPG4WIN]** | GitHub-Repository | Gpg4win Initiative | *gpg/gpg4win: Gpg4win build scripts and Windows installer packaging* | GitHub Repository<br>`https://github.com/gpg/gpg4win` |
 | **[WEB-GPG4WIN]** | Website (Dokumentation) | Gpg4win Initiative | *Gpg4win – Secure e-mail and file encryption for Windows* | Offizielle Website<br>`https://www.gpg4win.org/index.html` |
 | **[WEB-KDE-KLEO]** | Website (App-Übersicht) | KDE Community | *KDE Applications: Kleopatra* | KDE Software-Portal<br>`https://apps.kde.org/kleopatra/` |
-| **[EXP-TESTS]** | Eigene Erhebung | Eigene Arbeitsgruppe | *Empirische Funktions- und Sicherheitsanalyse (Protokollprüfungen)* | Eigene Prüfungen (2026) |
+| **[EXP-TESTS]** | Eigene Erhebung | Oliver Decker | *Empirische Funktions- und Sicherheitsanalyse (Protokollprüfungen auf Windows 11)* | Eigene Prüfungen (06.10.2026) |

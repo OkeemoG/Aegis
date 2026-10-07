@@ -5,7 +5,7 @@ User-friendly file encryption application with extensibility for end-to-end encr
 
 ## Phase 1: Vorbereitung, Analyse & Anforderungsdefinition
 * **Konkurrenzanalyse durchführen:**
-  * Kleopatra (GnuPG), Picocrypt und age vergleichen
+  * Kleopatra (GnuPG), Picocrypt, age und Cryptomator vergleichen
   * Typische UX-Schwachstellen dokumentieren
 * **Anforderungen ausarbeiten:**
   * Randbedingungen festlegen

@@ -473,10 +473,9 @@ Gezählt werden Klicks, Tastatureingaben von Befehlen und Dialogbestätigungen. 
 
 | Nr. | Situation | Beobachtung | Schweregrad (gering / mittel / hoch) | Konsequenz für Aegis |
 |---|---|---|---|---|
-| 1 | **Schlüsselweitergabe / Export** | `Strg + C` auf einem Zertifikat in der Übersicht kopiert nur Tabellentext (Name/E-Mail), nicht den Public Key. Der eigentliche Krypto-Export liegt versteckt im Kontextmenü. | **hoch** | Ein Klick auf einen Schlüssel muss sofort den Public Key (kompakt als Bech32-String) kopieren, ohne Metadaten-Verwirrung. |
-| 2 | **Fehlermeldungen bei Integritätsverletzung (D3, D5)** | Manipulationen in der Nutzlast oder abgeschnittene Dateien erzeugen rein technische Low-Level-Fehler (`Checksum error`) ohne Erklärung für Laien. | **mittel** | Verständliche Meldungen mit Handlungsanweisung anzeigen (z. B. *„Die Datei ist beschädigt oder wurde manipuliert. Brechen Sie das Öffnen ab.“*). |
-| 3 | **Schlüsselimport & Vertrauensmodell** | Nach dem Import eines Schlüssels wird der Nutzer direkt mit Fragen zu „Beglaubigung“ und „Vertrauenswürdigkeit des Besitzers“ konfrontiert. | **hoch** | Web-of-Trust-Konzepte weglassen; stattdessen auf einfaches Trust-on-First-Use (TOFU) oder manuelle Fingerprint-Verifikation setzen. |
-| 4 | **Prozessabbruch hinterlässt Dateireste** | Wird ein Verschlüsselungs- oder Entschlüsselungsvorgang manuell abgebrochen, bleibt eine unvollständige `.part`-Datei im Zielverzeichnis liegen. | **gering** | Transaktionale Dateioperationen nutzen: Bei Abbruch oder Fehler müssen unfertige temporäre Ausgabedateien sofort bereinigt werden. |
+| 1 | | | | |
+| 2 | | | | | 
+| 3 | | | | |
 
 ---
 

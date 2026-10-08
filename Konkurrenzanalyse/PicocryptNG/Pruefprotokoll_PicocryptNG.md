@@ -15,11 +15,11 @@
 
 | Nr. | Testdatei | Beschreibung | Vorhanden |
 |---|---|---|:---:|
-| D1 | `test_1gb.bin` | 1 GB Zufallsdaten | [x] |
-| D2 | `test_5gb.bin` | 5 GB Zufallsdaten | [x] |
-| D3 | `manipuliert_mitte` | Verschlüsselte D1, ein Byte in der Dateimitte verändert | [x] |
-| D4 | `manipuliert_header` | Verschlüsselte D1, ein Byte im Header verändert | [x] |
-| D5 | `abgeschnitten` | Verschlüsselte D1, letzte 1000 Byte entfernt | [x] |
+| D1 | `test_1gb.bin` | 1 GB Zufallsdaten | ☑ |
+| D2 | `test_5gb.bin` | 5 GB Zufallsdaten | ☑ |
+| D3 | `manipuliert_mitte` | Verschlüsselte D1, ein Byte in der Dateimitte verändert | ☑ |
+| D4 | `manipuliert_header` | Verschlüsselte D1, ein Byte im Header verändert | ☑ |
+| D5 | `abgeschnitten` | Verschlüsselte D1, letzte 1000 Byte entfernt | ☑ |
 
 ---
 
@@ -29,12 +29,12 @@
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| S1.1 | Welcher Verschlüsselungsalgorithmus wird verwendet? | XChaCha20 |
-| S1.2 | Ist die Verschlüsselung authentifiziert (AEAD oder Encrypt-then-MAC)? | ja / nein |
-| S1.3 | Ist der Header authentifiziert? | ja / nein |
-| S1.4 | Sind Chunks gegen Vertauschen und Löschen geschützt? | ja / nein |
-| S1.5 | Wird ein Abschneiden der Datei erkannt (Test mit D5)? | ja / nein |
-| S1.6 | Wird eine Manipulation erkannt (Test mit D3 und D4)? | ja / nein |
+| S1.1 | Welcher Verschlüsselungsalgorithmus wird verwendet? | XChaCha20, (Serpent) |
+| S1.2 | Ist die Verschlüsselung authentifiziert (AEAD oder Encrypt-then-MAC)? | EtM mit BLAKE2b/ HMAC-SHA3 |
+| S1.3 | Ist der Header authentifiziert? | ja |
+| S1.4 | Sind Chunks gegen Vertauschen und Löschen geschützt? | ja |
+| S1.5 | Wird ein Abschneiden der Datei erkannt (Test mit D5)? | ja |
+| S1.6 | Wird eine Manipulation erkannt (Test mit D3 und D4)? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -44,16 +44,16 @@
 | 1 | Integrität nur über separate Signatur möglich |
 | 0 | Kein Integritätsschutz |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 4 **Begründung:** EtM, Header authentifiziert, Chunk-Reihenfolge, Manipulation und Abschneiden der Payload erkannt
 
 ### S2 Stärke der Passwort-KDF (Gewicht 6)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| S2.1 | Welche KDF wird im Passwortmodus verwendet? | |
-| S2.2 | Welche Parameter (Speicher, Iterationen, Parallelität)? | |
-| S2.3 | Kann der Nutzer die Parameter abschwächen? | ja / nein |
-| S2.4 | Gemessene Dauer der Schlüsselableitung (Sekunden) | |
+| S2.1 | Welche KDF wird im Passwortmodus verwendet? | Argon2id |
+| S2.2 | Welche Parameter (Speicher, Iterationen, Parallelität)? | 1GiB memory, 4 passes, 4 threads |
+| S2.3 | Kann der Nutzer die Parameter abschwächen? | nein |
+| S2.4 | Gemessene Dauer der Schlüsselableitung (Sekunden) | (-♾️)-♾️ |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -63,17 +63,17 @@
 | 1 | Iteriertes S2K oder PBKDF2 mit niedriger Iterationszahl |
 | 0 | Kein Passwortmodus oder unsichere Ableitung |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 4 **Begründung:** Argon2id mit starken, nicht abschwächbaren Parametern.
 
 ### S3 Post-Quanten-Resistenz (Gewicht 6)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| S3.1 | Wird ein Post-Quanten-Verfahren angeboten? | ja / nein |
-| S3.2 | Welches Verfahren (z. B. ML-KEM-768, ML-KEM-1024)? | |
-| S3.3 | Wird es hybrid mit einem klassischen Verfahren kombiniert? | ja / nein |
-| S3.4 | Ist es standardmäßig aktiv? | ja / nein |
-| S3.5 | Ist es in der stabilen Version verfügbar (nicht Beta oder Plugin)? | ja / nein |
+| S3.1 | Wird ein Post-Quanten-Verfahren angeboten? | nein |
+| S3.2 | Welches Verfahren (z. B. ML-KEM-768, ML-KEM-1024)? | - |
+| S3.3 | Wird es hybrid mit einem klassischen Verfahren kombiniert? | nein |
+| S3.4 | Ist es standardmäßig aktiv? | nein |
+| S3.5 | Ist es in der stabilen Version verfügbar (nicht Beta oder Plugin)? | nein |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -83,17 +83,17 @@
 | 1 | Angekündigt, aber nicht verfügbar |
 | 0 | Nicht vorhanden |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 0 **Begründung:** Nicht vorhanden.
 
 ### S4 Sichere Defaults (Gewicht 6)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| S4.1 | Sind die Standardeinstellungen ohne Änderung sicher? | ja / nein |
-| S4.2 | Kann der Nutzer veraltete oder unsichere Algorithmen auswählen? | ja / nein |
-| S4.3 | Ist ein leeres Passwort möglich? | ja / nein |
-| S4.4 | Wird bei schwachem Passwort gewarnt oder blockiert? | ja / nein |
-| S4.5 | Wird unverschlüsselter Klartext unbeabsichtigt zurückgelassen? | ja / nein |
+| S4.1 | Sind die Standardeinstellungen ohne Änderung sicher? | ja |
+| S4.2 | Kann der Nutzer veraltete oder unsichere Algorithmen auswählen? | nein |
+| S4.3 | Ist ein leeres Passwort möglich? | nein |
+| S4.4 | Wird bei schwachem Passwort gewarnt oder blockiert? | (ja) |
+| S4.5 | Wird unverschlüsselter Klartext unbeabsichtigt zurückgelassen? | nein |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -103,17 +103,17 @@
 | 1 | Unsichere Optionen gleichrangig neben sicheren wählbar |
 | 0 | Unsichere Standardeinstellungen |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 3 **Begründung:** Keine unsicheren Funktionen, aber nur wenig auffällige Anzeige der Passwortstärke
 
 ### S5 Öffentliche Spezifikation und Audits (Gewicht 6)
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| S5.1 | Gibt es eine öffentliche Spezifikation des Dateiformats? | ja / nein |
-| S5.2 | Ist das Format standardisiert (RFC, C2SP o. Ä.)? | ja / nein |
-| S5.3 | Gab es ein unabhängiges Sicherheitsaudit? Wer, wann? | |
-| S5.4 | Wurden die Befunde behoben? | ja / nein |
-| S5.5 | Gibt es öffentliche Testvektoren? | ja / nein |
+| S5.1 | Gibt es eine öffentliche Spezifikation des Dateiformats? | ja |
+| S5.2 | Ist das Format standardisiert (RFC, C2SP o. Ä.)? | nein |
+| S5.3 | Gab es ein unabhängiges Sicherheitsaudit? Wer, wann? | ja, Radically Open Security, September 2024|
+| S5.4 | Wurden die Befunde behoben? | ja |
+| S5.5 | Gibt es öffentliche Testvektoren? | ja |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -123,7 +123,7 @@
 | 1 | Nur informelle Beschreibung |
 | 0 | Weder Spezifikation noch Audit |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 3 **Begründung:** Öffentliche, nicht standartisierte Spezifikation, aktuelles Audit mit behobenen Befunden, öffentliche Testvektoren.
 
 ---
 
@@ -142,9 +142,9 @@
 
 | Nr. | Prüffrage | Antwort |
 |---|---|---|
-| U1.1 | Zeit vom Programmstart bis zur fertigen verschlüsselten Datei (T1) | ___ min |
-| U1.2 | Wurde Dokumentation oder Websuche benötigt? Wie oft? | |
-| U1.3 | Gab es Fehlversuche? Welche? | |
+| U1.1 | Zeit vom Programmstart bis zur fertigen verschlüsselten Datei (T1) | 26,12s |
+| U1.2 | Wurde Dokumentation oder Websuche benötigt? Wie oft? | nein |
+| U1.3 | Gab es Fehlversuche? Welche? | nein |
 
 | Punkte | Bedingung |
 |:---:|---|
@@ -154,7 +154,7 @@
 | 1 | Über 5 Minuten oder mehrfach Dokumentation nötig |
 | 0 | Aufgabe nicht gelöst |
 
-**Punkte:** ___ **Begründung:**
+**Punkte:** 4 **Begründung:** <1min ohne Hilfe.
 
 ### U2 Anzahl der Interaktionsschritte (Gewicht 6)
 

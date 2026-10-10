@@ -21,3 +21,8 @@ target
 #.idea/
 .direnv/
 .direnv/
+
+*.bin
+*.age
+*.pcv
+*.gpg
